@@ -22,6 +22,7 @@
         <groupId>io.openshift.booster</groupId>
         <artifactId>wildfly-messaging-work-queue-parent</artifactId>
         <version>1.0-SNAPSHOT</version>
+        <relativePath>../pom.xml</relativePath>
     </parent>
 
     <artifactId>wildfly-messaging-work-queue-frontend</artifactId>

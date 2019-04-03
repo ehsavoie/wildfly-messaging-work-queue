@@ -30,6 +30,16 @@ parameters:
     displayName: Source Directory
     value: .
     required: true
+  - name: ARTIFACT_DIR
+    description: "Directory from which archives will be copied into the deployment folder. If unspecified, all archives in /target will be copied."
+    displayName: Artifacts Directory
+    value: target
+    required: false
+  - name: CONTEXT_DIR
+    description: "Path within Git project to build; empty for root project directory."
+    displayName: Context Directory
+    value: frontend
+    required: false
 objects:
   - kind: ImageStream
     apiVersion: image.openshift.io/v1
@@ -60,8 +70,11 @@ objects:
           imageChange: {}
       source:
         type: Git
-        git:
-          uri: '${SOURCE_REPOSITORY_URL}'
+        git: {
+          uri: '${SOURCE_REPOSITORY_URL}',
+          ref: '${SOURCE_REPOSITORY_REF}'
+        }
+        contextDir: ${CONTEXT_DIR}
       strategy:
         type: Source
         sourceStrategy:
@@ -70,7 +83,12 @@ objects:
             namespace: openshift
             name: 'wildfly:latest'
           incremental: true
-          env: []
+          env: [
+            {
+              "name": "ARTIFACT_DIR", 
+              "value": "${ARTIFACT_DIR}"
+            }
+          ]
       output:
         to:
           kind: ImageStreamTag
