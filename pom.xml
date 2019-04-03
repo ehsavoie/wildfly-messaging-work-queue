@@ -60,6 +60,23 @@
     <build>
         <plugins>
             <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>exec-maven-plugin</artifactId>
+                <version>1.6.0</version>
+                 <executions>
+                    <execution>
+                        <id>check-configuration</id>
+                        <phase>validate</phase>
+                        <goals>
+                            <goal>exec</goal>
+                        </goals>
+                        <configuration>
+                             <executable>export</executable>
+                        </configuration>
+                    </execution>
+                 </executions>
+            </plugin>
+            <plugin>
                 <artifactId>maven-resources-plugin</artifactId>
                 <version>3.1.0</version>
                 <executions>
