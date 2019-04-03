@@ -66,7 +66,7 @@
                 <executions>
                     <execution>
                         <id>check-configuration</id>
-                        <phase>verify</phase>
+                        <phase>prepare-package</phase>
                         <goals>
                             <goal>exec</goal>
                         </goals>
