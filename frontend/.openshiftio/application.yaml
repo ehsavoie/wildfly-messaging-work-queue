@@ -74,7 +74,6 @@ objects:
           uri: '${SOURCE_REPOSITORY_URL}',
           ref: '${SOURCE_REPOSITORY_REF}'
         }
-        contextDir: ${CONTEXT_DIR}
       strategy:
         type: Source
         sourceStrategy:
@@ -87,6 +86,10 @@ objects:
             {
               "name": "ARTIFACT_DIR", 
               "value": "${ARTIFACT_DIR}"
+            },
+            {
+               "name": "BUILD_LOGLEVEL", 
+              "value": "5"
             }
           ]
       output:
