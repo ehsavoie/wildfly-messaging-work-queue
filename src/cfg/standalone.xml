@@ -438,7 +438,7 @@
                     </archive>
                     <transaction-support>NoTransaction</transaction-support>
                     <connection-definitions>
-                        <connection-definition class-name="org.jboss.resource.adapter.jms.JmsManagedConnectionFactory" jndi-name="java:jboss/DefaultJMSConnectionFactory" pool-name="amqp">
+                        <connection-definition class-name="org.jboss.resource.adapter.jms.JmsManagedConnectionFactory" jndi-name="java:global/jms/default" pool-name="amqp">
                             <config-property name="ConnectionFactory">
                                 factory1
                             </config-property>
