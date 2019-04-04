@@ -105,33 +105,6 @@
             <id>openshift</id>
             <build>
                 <plugins>
-                    <!--                    <plugin>
-                        <artifactId>maven-clean-plugin</artifactId>
-                        <executions>
-                            <execution>
-                                <id>remove-openshift</id>
-                                <goals>
-                                    <goal>clean</goal>
-                                </goals>
-                                <configuration>
-                                    <filesets>
-                                        <fileset>
-                                            <directory>${basedir}/cfg</directory>
-                                            <includes>
-                                                <include>**/*.xml</include>
-                                            </includes>
-                                        </fileset>
-                                        <fileset>
-                                            <directory>${basedir}/deployments</directory>
-                                            <includes>
-                                                <include>**/*.*</include>
-                                            </includes>
-                                        </fileset>
-                                    </filesets>
-                                </configuration>
-                            </execution>
-                        </executions>
-                    </plugin>-->
                     <plugin>
                         <artifactId>maven-resources-plugin</artifactId>
                         <version>3.1.0</version>
