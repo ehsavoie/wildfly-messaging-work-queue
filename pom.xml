@@ -69,6 +69,7 @@
                             <goal>clean</goal>
                         </goals>
                         <phase>validate</phase>
+                        <inherited>false</inherited>
                         <configuration>
                             <failOnError>false</failOnError>
                             <filesets>

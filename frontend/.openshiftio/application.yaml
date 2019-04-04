@@ -87,14 +87,14 @@ objects:
             {
               "name": "ARTIFACT_DIR", 
               "value": "${ARTIFACT_DIR}"
-            },
-            {
-               "name": "BUILD_LOGLEVEL", 
-              "value": "5"
-            },
-            {
-               "name": "MAVEN_ARGS_APPEND", 
-              "value": "-e -X"
+#            },
+#            {
+#               "name": "BUILD_LOGLEVEL", 
+#              "value": "5"
+#            },
+#            {
+#               "name": "MAVEN_ARGS_APPEND", 
+#              "value": "-e -X"
             }
           ]
       output:
