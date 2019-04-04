@@ -35,11 +35,11 @@ parameters:
     displayName: Artifacts Directory
     value: target
     required: false
-  - name: CONTEXT_DIR
-    description: "Path within Git project to build; empty for root project directory."
-    displayName: Context Directory
-    value: frontend
-    required: false
+#  - name: CONTEXT_DIR
+#    description: "Path within Git project to build; empty for root project directory."
+#    displayName: Context Directory
+#    value: frontend
+#    required: false
 objects:
   - kind: ImageStream
     apiVersion: image.openshift.io/v1
@@ -74,6 +74,7 @@ objects:
           uri: '${SOURCE_REPOSITORY_URL}',
           ref: '${SOURCE_REPOSITORY_REF}'
         }
+#        contextDir: ${CONTEXT_DIR}
       strategy:
         type: Source
         sourceStrategy:
@@ -90,6 +91,10 @@ objects:
             {
                "name": "BUILD_LOGLEVEL", 
               "value": "5"
+            },
+            {
+               "name": "MAVEN_ARGS_APPEND", 
+              "value": "-e -X"
             }
           ]
       output:

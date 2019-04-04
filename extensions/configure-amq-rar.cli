@@ -1,0 +1,12 @@
+embed-server --std-out=echo  --server-config=standalone-openshift.xml
+/subsystem=resource-adapters/resource-adapter=amqp:add(archive=resource-adapter-1.0.0.rar, transaction-support=NoTransaction)
+/subsystem=resource-adapters/resource-adapter=amqp/connection-definitions=amqp:add(class-name=org.jboss.resource.adapter.jms.JmsManagedConnectionFactory, jndi-name=java:global/jms/default)
+/subsystem=resource-adapters/resource-adapter=amqp/connection-definitions=amqp/config-properties=ConnectionFactory:add(value=factory1)
+/subsystem=resource-adapters/resource-adapter=amqp/connection-definitions=amqp/config-properties=UserName:add(value=work-queue)
+/subsystem=resource-adapters/resource-adapter=amqp/connection-definitions=amqp/config-properties=Password:add(value=work-queue)
+/subsystem=resource-adapters/resource-adapter=amqp/connection-definitions=amqp/config-properties=JndiParameters:add(value="java.naming.factory.initial=org.apache.qpid.jms.jndi.JmsInitialContextFactory;connectionFactory.factory1=amqp://${env.MESSAGING_SERVICE_HOST:localhost}:${env.MESSAGING_SERVICE_PORT:5672}")
+/subsystem=ejb3:write-attribute(name=default-resource-adapter-name, value=amqp)
+/subsystem=ee/service=default-bindings:write-attribute(name=jms-connection-factory, value="java:global/jms/default")
+/subsystem=ee:write-attribute(name=annotation-property-replacement, value=true)
+/subsystem=messaging-activemq/server=default:remove
+quit
