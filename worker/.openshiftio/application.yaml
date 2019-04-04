@@ -33,7 +33,7 @@ parameters:
   - name: ARTIFACT_DIR
     description: "Directory from which archives will be copied into the deployment folder. If unspecified, all archives in /target will be copied."
     displayName: Artifacts Directory
-    value: target
+    value: frontend/target
     required: false
   - name: CONTEXT_DIR
     description: "Path within Git project to build; empty for root project directory."
