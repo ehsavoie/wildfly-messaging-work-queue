@@ -33,13 +33,8 @@ parameters:
   - name: ARTIFACT_DIR
     description: "Directory from which archives will be copied into the deployment folder. If unspecified, all archives in /target will be copied."
     displayName: Artifacts Directory
-    value: target
+    value: frontend/target
     required: false
-#  - name: CONTEXT_DIR
-#    description: "Path within Git project to build; empty for root project directory."
-#    displayName: Context Directory
-#    value: frontend
-#    required: false
 objects:
   - kind: ImageStream
     apiVersion: image.openshift.io/v1
@@ -74,7 +69,6 @@ objects:
           uri: '${SOURCE_REPOSITORY_URL}',
           ref: '${SOURCE_REPOSITORY_REF}'
         }
-#        contextDir: ${CONTEXT_DIR}
       strategy:
         type: Source
         sourceStrategy:
@@ -87,14 +81,6 @@ objects:
             {
               "name": "ARTIFACT_DIR", 
               "value": "${ARTIFACT_DIR}"
-#            },
-#            {
-#               "name": "BUILD_LOGLEVEL", 
-#              "value": "5"
-#            },
-#            {
-#               "name": "MAVEN_ARGS_APPEND", 
-#              "value": "-e -X"
             }
           ]
       output:
@@ -147,7 +133,16 @@ objects:
               resources:
                 limits:
                   memory: 1G
-              env: []
+              env: [
+                {
+                  "name": "MESSAGING_SERVICE_HOST",
+                  "value": "work-queue-broker-amq-amqp"
+                },
+                {
+                  "name": MESSAGING_SERVICE_PORT,
+                  "value": "5672"
+                }
+              ]
               readinessProbe:
                 httpGet:
                   path: /health
